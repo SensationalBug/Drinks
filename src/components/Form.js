@@ -8,7 +8,7 @@ export const Form = () => {
     categoria: "",
   });
   const { categorias } = useContext(CategoriasContext);
-  const { setBusqueda } = useContext(RecetasContext);
+  const { setBusqueda, setConsultar } = useContext(RecetasContext);
 
   const obtenerData = (e) => {
     setBuscar({
@@ -22,19 +22,20 @@ export const Form = () => {
       onSubmit={(e) => {
         e.preventDefault();
         setBusqueda(buscar);
+        setConsultar(true);
       }}
     >
       <div className="col-md-4">
         <input
           type="text"
           name="nombre"
-          className="form-control"
+          className="form-control my-2"
           onChange={obtenerData}
         />
       </div>
       <div className="col-md-4">
         <select
-          className="form-control"
+          className="form-control my-2"
           name="categoria"
           onChange={obtenerData}
         >
@@ -49,7 +50,7 @@ export const Form = () => {
       <div className="col-md-4">
         <input
           type="submit"
-          className="form-control bg-info text-white"
+          className="form-control bg-info text-white my-2"
           value="Buscar"
         />
       </div>

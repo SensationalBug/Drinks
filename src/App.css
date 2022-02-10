@@ -1,3 +1,21 @@
-header{
+header {
   font-size: 40px;
+}
+
+.drinkImg {
+  width: 18em;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+}
+
+.form input[type="submit"] {
+  width: 50%;
+  margin: auto;
+}
+
+option {
+  text-align: center;
 }
