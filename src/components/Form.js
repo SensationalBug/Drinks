@@ -7,6 +7,7 @@ export const Form = () => {
     nombre: "",
     categoria: "",
   });
+  const [emptyInput, setEmptyInput] = useState("form-control my-2");
   const { categorias } = useContext(CategoriasContext);
   const { setBusqueda, setConsultar } = useContext(RecetasContext);
 
@@ -16,29 +17,35 @@ export const Form = () => {
       [e.target.name]: [e.target.value],
     });
   };
+
+  const submit = () => {
+    if (buscar.nombre === "" || buscar.categoria === "") {
+      setEmptyInput("form-control my-2 border border-danger");
+      setTimeout(() => setEmptyInput("form-control my-2"), 1000);
+    } else {
+      setBusqueda(buscar);
+      setConsultar(true);
+    }
+  };
+
   return (
     <form
-      className="form row mt-5"
+      className="form row mt-5 container"
       onSubmit={(e) => {
         e.preventDefault();
-        setBusqueda(buscar);
-        setConsultar(true);
+        submit();
       }}
     >
       <div className="col-md-4">
         <input
           type="text"
           name="nombre"
-          className="form-control my-2"
+          className={emptyInput}
           onChange={obtenerData}
         />
       </div>
       <div className="col-md-4">
-        <select
-          className="form-control my-2"
-          name="categoria"
-          onChange={obtenerData}
-        >
+        <select className={emptyInput} name="categoria" onChange={obtenerData}>
           <option value="">-- Seleccionar --</option>
           {categorias.map((element) => (
             <option key={element.strCategory} value={element.strCategory}>
